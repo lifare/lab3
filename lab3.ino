@@ -61,29 +61,10 @@ void setup()
     ledDisplay.clearDisplay(address);
   }
   
-  for (int i = 0; i < rowAmount; i++) {
-    pinMode(rowPins1[i], OUTPUT);
-    digitalWrite(rowPins1[i], HIGH);
-  }
-
-  for (int i = 0; i < colAmount; i++) {
-    pinMode(colPins1[i], INPUT);
-    digitalWrite(colPins1[i], HIGH);
-  }
-  
-  for (int i = 0; i < rowAmount; i++) {
-    pinMode(rowPins2[i], OUTPUT);
-    digitalWrite(rowPins2[i], HIGH);
-  }
-
-  for (int i = 0; i < colAmount; i++) {
-    pinMode(colPins2[i], INPUT);
-    digitalWrite(colPins2[i], HIGH);
-  }
-//  setDataKey(true, OUTPUT, HIGH, 1);
-//  setDataKey(false, INPUT, HIGH, 1);
-//  setDataKey(true, OUTPUT, HIGH, 2);
-//  setDataKey(false, INPUT, HIGH, 2);
+  setDataKey(true, OUTPUT, HIGH, 1);
+  setDataKey(false, INPUT, HIGH, 1);
+  setDataKey(true, OUTPUT, HIGH, 2);
+  setDataKey(false, INPUT, HIGH, 2);
 
   servo1.attach(10);
   servo2.attach(9);
