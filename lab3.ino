@@ -41,11 +41,11 @@ char keyMatrix[rowAmount][colAmount] = {
 
 static bool keyDownMatrix[rowAmount][colAmount];
 
-byte rowPins1[rowAmount] = { 43, 45, 47, 49 }; 
-byte colPins1[colAmount] = { 41, 39, 37, 35 };
+byte rowPins1[rowAmount] = { 40, 42, 44, 46 }; 
+byte colPins1[colAmount] = { 38, 36, 34, 32 };
 
-byte rowPins2[rowAmount] = { 42, 44, 46, 48 };
-byte colPins2[colAmount] = { 40, 38, 36, 34 };
+byte rowPins2[rowAmount] = { 41, 43, 45, 47 };
+byte colPins2[colAmount] = { 39, 37, 35, 33 };
 
 Servo servo1;
 Servo servo2;
