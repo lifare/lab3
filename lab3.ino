@@ -20,9 +20,9 @@ LedControl ledDisplay = LedControl(26, 22, 24, 3);
 uint64_t lastGameUpdate;
 uint64_t lastDisplayUpdate;
 uint64_t lastFoodBlink;
-const uint64_t gameUpdateDelayMs = 100;
-const uint64_t displayUpdateDelayMs = 100;
-const uint64_t foodBlinkDelayMs = 100;
+const uint64_t gameUpdateDelayMs = 200;
+const uint64_t displayUpdateDelayMs = 200;
+const uint64_t foodBlinkDelayMs = 200;
 uint64_t lastInputUpdate = 0;
 bool showingFood = true;
 
@@ -52,16 +52,38 @@ Servo servo2;
 
 void setup()
 {
+  Serial.begin(115200);
+  Serial.println("Started!");
   int devices = ledDisplay.getDeviceCount();
   for (int address = 0; address < devices; address++){
     ledDisplay.shutdown(address, false);
     ledDisplay.setIntensity(address, 10);
     ledDisplay.clearDisplay(address);
   }
-  setDataKey(true, OUTPUT, HIGH, 1);
-  setDataKey(false, INPUT, HIGH, 1);
-  setDataKey(true, OUTPUT, HIGH, 2);
-  setDataKey(false, INPUT, HIGH, 2);
+  
+  for (int i = 0; i < rowAmount; i++) {
+    pinMode(rowPins1[i], OUTPUT);
+    digitalWrite(rowPins1[i], HIGH);
+  }
+
+  for (int i = 0; i < colAmount; i++) {
+    pinMode(colPins1[i], INPUT);
+    digitalWrite(colPins1[i], HIGH);
+  }
+  
+  for (int i = 0; i < rowAmount; i++) {
+    pinMode(rowPins2[i], OUTPUT);
+    digitalWrite(rowPins2[i], HIGH);
+  }
+
+  for (int i = 0; i < colAmount; i++) {
+    pinMode(colPins2[i], INPUT);
+    digitalWrite(colPins2[i], HIGH);
+  }
+//  setDataKey(true, OUTPUT, HIGH, 1);
+//  setDataKey(false, INPUT, HIGH, 1);
+//  setDataKey(true, OUTPUT, HIGH, 2);
+//  setDataKey(false, INPUT, HIGH, 2);
 
   servo1.attach(10);
   servo2.attach(9);
@@ -176,10 +198,14 @@ void updateInput() {
   lastInputUpdate = millis();
   char key1 = getKey(0);
   char key2 = getKey(1);
-  if (key1 != keyNone)
+  if (key1 != keyNone){
     currentKey1 = key1;
-  if (key2 != keyNone)
+    Serial.print(currentKey1);
+  }
+  if (key2 != keyNone){
     currentKey2 = key2;
+    Serial.print(currentKey2);
+  }
 }
 
 void updateGame()
