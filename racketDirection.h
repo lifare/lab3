@@ -1,0 +1,4 @@
+enum RacketDirection {
+  UP,
+  DOWN
+};
